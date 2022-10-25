@@ -1,0 +1,47 @@
+#include <bits/stdc++.h> 
+bool issolution(vector<int> A,int N, int M,int mid)
+    {
+        int student=1,solspace=0;
+        for (int i=0;i<N;i++)
+        {
+            if(solspace+A[i]<=mid)
+            {
+                solspace+=A[i];
+            }
+            else
+            {
+                student++;
+                if(student>M || A[i]>mid)
+                   return false;
+                
+                solspace=A[i];
+            }
+        }
+        return true;
+}
+int allocateBooks(vector<int> A, int N, int M) {
+    {
+        int s=0,sum=0,e,ans=-1;
+        for (int i=0;i<N;i++)
+        {
+            sum+=A[i];
+        }
+        e=sum;
+        int mid;
+        while(s<=e)
+        {
+            mid=s+(e-s)/2;
+            if(issolution(A,N,M,mid))
+               {
+                  ans=mid;
+                  e=mid-1;
+               }
+              else
+              {
+                  s=mid+1;
+              }
+        }
+        return ans;
+    }
+
+}
