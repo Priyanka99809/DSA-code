@@ -1,0 +1,37 @@
+https://www.interviewbit.com/problems/woodcutting-made-easy/ 
+bool is_solution(vector<int> &A, int B,int mid)
+{
+   long long int solspace=0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]>mid)
+        {
+            solspace+=(A[i]-mid);
+            
+        }
+    }
+    if(solspace>=B)
+     return true;
+     else
+     return false;
+}
+ int Solution::solve(vector<int> &A, int B) {
+     int s=0,e,ans=-1,maxi=-1,mid;
+    for(int i=0;i<A.size();i++)
+      maxi=max(A[i],maxi);
+    e=maxi;
+    while(s<=e)
+    {
+        mid=s+(e-s)/2;
+        if(is_solution(A,B,mid))
+        {
+            ans=mid;
+            s=mid+1;
+        }
+        else
+        {
+            e=mid-1;
+        }
+    }
+    return ans;
+}
