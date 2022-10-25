@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+int sqrtN(long long int N)
+{    long long int ans=0;
+   for(long long int i=0;i<=N;i++)
+   {   long long int sq=i*i;
+       if(sq>N)
+         break;
+       ans=i;
+   }
+   return ans;
+}
