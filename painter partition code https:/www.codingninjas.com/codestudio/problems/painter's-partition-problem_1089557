@@ -1,0 +1,48 @@
+bool is_solution(vector<int> &arr, int k,int mid)
+{
+    int painter=1,solspace=0;
+    for(int i=0;i<arr.size();i++)
+    {
+        if(solspace+arr[i]<=mid)
+        {
+            solspace+=arr[i];
+        }
+        else
+        {   painter++;
+            if(painter>k || arr[i]>mid)
+            {
+                return false;
+            }
+            else
+            {
+                solspace=arr[i];
+            }
+        }
+    }
+    return true;
+}
+int findLargestMinDistance(vector<int> &arr, int k)
+{
+    int s=0,sum=0,ans=-1,e,mid;
+    for (int i=0;i<arr.size();i++)
+        sum+=arr[i];
+    e=sum;
+    if(k==1)
+    {
+        return sum;
+    }
+    else if(k>arr.size())
+        return -1;
+    while(s<=e)
+    {
+        mid=s+(e-s)/2;
+        if(is_solution(arr,k,mid))
+        {
+            ans=mid;
+            e=mid-1;
+        }
+        else
+            s=mid+1;
+    }
+    return ans;
+}
