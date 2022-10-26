@@ -1,0 +1,48 @@
+https://www.codingninjas.com/codestudio/problems/selection-sort_981162 
+#include <bits/stdc++.h> 
+void selectionSort(vector<int>& arr, int n)
+{   
+    for(int i=0;i<n-1;i++)
+   
+   {   int minimum=i;
+         for(int j=i+1;j<n;j++)
+         {
+             if(arr[j]<arr[minimum])
+                 minimum=j;
+         }
+        int t=arr[i];
+        arr[i]=arr[minimum];
+        arr[minimum]=t;
+    }
+}
+#stable selection sort
+#include <iostream>
+using namespace std;
+void selection_sort(int arr[],int n)
+{
+    for(int i=0;i<n-1;i++)
+    {
+        int m=i;
+        for(int j=i+1;j<n;j++)
+        {
+            if(arr[j]<arr[m])
+               m=j;
+        }
+        int key=arr[m];
+         for(int k=m;k>i;k--)
+         {
+             arr[k]=arr[k-1];
+         }
+         arr[i]=key;
+    }
+}
+
+int main() {
+	int arr[]={25,24,233,33,27,11};
+	int n=sizeof(arr)/sizeof(arr[0]);
+	cout<<n<<endl;
+	selection_sort(arr,n);
+	for(int i=0;i<n;i++)
+	 cout<<arr[i]<<"   ";
+	return 0;
+}
